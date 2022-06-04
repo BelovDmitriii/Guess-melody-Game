@@ -2,7 +2,7 @@ function ArtistQuestionScreen(): JSX.Element {
   return (
     <section className="game game--artist">
       <header className="game__header">
-        <a className="game__back" href="#">
+        <a className="game__back" href="/">
           <span className="visually-hidden">Сыграть ещё раз</span>
           <img className="game__logo" src="img/melody-logo-ginger.png" alt="Угадай мелодию" />
         </a>
