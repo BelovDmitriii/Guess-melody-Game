@@ -77,4 +77,4 @@ function GenreQuestionScreen(): JSX.Element {
   );
 }
 
-export default GenreQuestionScreen();
+export default GenreQuestionScreen;
