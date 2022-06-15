@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+
 function WinScreen():JSX.Element {
   return (
     <section className="result">
