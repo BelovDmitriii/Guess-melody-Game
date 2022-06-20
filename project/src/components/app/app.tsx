@@ -37,7 +37,7 @@ function App({errorsCount}: AppScreenProps): JSX.Element {
           path={AppRoute.Result}
           element={
             <PrivateRoute
-              authorizationStatus={AuthorizationStatus.NoAuth}
+              authorizationStatus={AuthorizationStatus.Auth}
             >
               <WinScreen />
             </PrivateRoute>
