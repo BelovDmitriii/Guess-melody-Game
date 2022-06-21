@@ -5,8 +5,6 @@ export enum AppRoute {
   Result = '/result',
   Lose = '/lose',
   Root = '/',
-  DevArtist = '/dev-artist',
-  DevGenre = '/dev-genre',
   Game = '/game'
 }
 
