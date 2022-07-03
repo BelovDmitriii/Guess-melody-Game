@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 
 type AudioPlayerPropps = {
-  autoPlay: boolean;
+  isPlaying: boolean;
   src: string;
+  onPlayButtonClick: () => void;
 }
 
-function AudioPlayer({autoPlay, src}:AudioPlayerPropps): JSX.Element {
+function AudioPlayer({isPlaying, src, onPlayButtonClick}:AudioPlayerPropps): JSX.Element {
   const [isLoading, setIsLoading] = useState(true);
-  const [isPlaying, setIsPlaying] = useState(autoPlay);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
@@ -42,7 +42,7 @@ function AudioPlayer({autoPlay, src}:AudioPlayerPropps): JSX.Element {
       <button className={`track__button track__button--${isPlaying ? 'pause' : 'play'}`}
         type="button"
         disabled={isLoading}
-        onClick = {() => setIsPlaying(!isPlaying)}
+        onClick = {onPlayButtonClick}
       />
       <div className="track__status">
         <audio src={src} ref={audioRef} />
