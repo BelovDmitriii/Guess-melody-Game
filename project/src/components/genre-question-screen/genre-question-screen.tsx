@@ -1,19 +1,18 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
 import Logo from '../logo/logo';
 import { QuestionGenre, UserGenreQuestionAnswer } from '../../types/question';
-import AudioPlayer from '../audio-player/audio-player';
 
 type GenreQuestionScreenProps = {
   question: QuestionGenre;
   onAnswer: (question: QuestionGenre, answers: UserGenreQuestionAnswer) => void;
+  renderPlayer: (src: string, playerIndex: number) => JSX.Element;
 }
 
 function GenreQuestionScreen(props: GenreQuestionScreenProps): JSX.Element {
-  const {question, onAnswer} = props;
+  const {question, onAnswer, renderPlayer} = props;
   const {answers, genre} = question;
 
   const [userAnswers, setUserAnswers] = useState([false, false, false, false]);
-  const [activePlayer, setActivePlayer] = useState(0);
 
   return(
     <section className="game game--genre">
@@ -50,11 +49,7 @@ function GenreQuestionScreen(props: GenreQuestionScreenProps): JSX.Element {
             const keyValue = `${id}-${answer.src}`;
             return(
               <div key={keyValue} className="track">
-                <AudioPlayer
-                  isPlaying={id===activePlayer}
-                  src={answer.src}
-                  onPlayButtonClick = {() => setActivePlayer(activePlayer === id ? -1 : id)}
-                />
+                {renderPlayer(answer.src, id)}
                 <div className="game__answer">
                   <input className="game__input visually-hidden" type="checkbox" name="answer" value={`answer-${id}`} id={`answer-${id}`}
                     checked={userAnswers[id]}
