@@ -35,6 +35,11 @@ function ArtistQuestionScreen(props: ArtistQuestionScreenProps): JSX.Element {
         <div className="game__track">
           <div className="track">
             {renderPlayer(song.src, 0)}
+            {/* <AudioPlayer
+              isPlaying
+              src={song.src}
+              onPlayButtonClick = {() => {}}
+            /> */}
           </div>
         </div>
 

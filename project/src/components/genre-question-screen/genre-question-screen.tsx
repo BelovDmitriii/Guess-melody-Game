@@ -44,7 +44,6 @@ function GenreQuestionScreen(props: GenreQuestionScreenProps): JSX.Element {
             onAnswer(question, userAnswers);
           }}
         >
-
           {answers.map((answer, id) => {
             const keyValue = `${id}-${answer.src}`;
             return(

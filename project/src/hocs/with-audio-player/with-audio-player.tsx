@@ -16,15 +16,15 @@ function withAudioPlayer<T>(Component: ComponentType<T>)
     return (
       <Component
         {...props as T}
-        renderPlayer={(src: string, id: number) => {
+        renderPlayer = {(src: string, id: number) => (
           <AudioPlayer
             src={src}
             isPlaying={id === activePlayerId}
             onPlayButtonClick = {() => {
               setActivePlayerId(activePlayerId === id ? -1 : id);
             }}
-          />;
-        }}
+          />
+        )}
       />
     );
   }
