@@ -1,17 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app';
+import { Provider } from 'react-redux';
 import { questions } from './mocks/questions';
+import { store } from './store';
 
 const Setting = {
-  ERRORS_COUNT: 10,
+  ERRORS_COUNT: 3,
 };
 
 ReactDOM.render(
   <React.StrictMode>
-    <App
-      errorsCount={Setting.ERRORS_COUNT}
-      questions = {questions}
-    />
+    <Provider store = {store}>
+      <App
+        errorsCount={Setting.ERRORS_COUNT}
+        questions = {questions}
+      />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root'));
