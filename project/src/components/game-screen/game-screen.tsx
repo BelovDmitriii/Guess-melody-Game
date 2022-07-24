@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { incrementStep, checkUserAnswer } from '../../store/action';
-import { AppRoute, GameType } from '../../const';
+import { AppRoute, GameType, MAX_MISTAKES_COUNT } from '../../const';
 import ArtistQuestionScreen from '../artist-question-screen/artist-question-screen';
 import GenreQuestionScreen from '../genre-question-screen/genre-question-screen';
 import Mistakes from '../mistakes/mistakes';
@@ -19,6 +19,10 @@ function GameScreen ({questions}: GameScreenProps): JSX.Element {
   const {step, mistakes} = useAppSelector((state) => state);
   const question = questions[step];
   const dispatch = useAppDispatch();
+
+  if (mistakes >= MAX_MISTAKES_COUNT) {
+    return <Navigate to={AppRoute.Lose} />;
+  }
 
   if (step >= questions.length || !question) {
     return <Navigate to={AppRoute.Root} />;

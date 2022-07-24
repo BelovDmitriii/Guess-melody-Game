@@ -1,4 +1,5 @@
 export const FIRST_GAME_STEP = 0;
+export const MAX_MISTAKES_COUNT = 3;
 
 export enum AppRoute {
   Login = '/login',
