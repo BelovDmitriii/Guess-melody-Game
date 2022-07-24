@@ -1,4 +1,8 @@
+import { useNavigate } from 'react-router-dom';
+import { AppRoute } from '../../const';
+
 function GameOverScreen(): JSX.Element {
+  const navigate = useNavigate();
   return (
     <section className="result">
       <div className="result__logo">
@@ -9,6 +13,9 @@ function GameOverScreen(): JSX.Element {
       <button
         className="replay"
         type="button"
+        onClick={() => {
+          navigate(AppRoute.Root);
+        }}
       >
           Попробовать ещё раз
       </button>
