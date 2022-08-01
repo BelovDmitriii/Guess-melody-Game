@@ -1,5 +1,5 @@
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus, MAX_MISTAKES_COUNT } from '../../const';
+import { AppRoute, MAX_MISTAKES_COUNT } from '../../const';
 import AuthScreen from '../auth-screen/auth-screen';
 import GameOverScreen from '../game-over-screen/game-over-screen';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
@@ -7,8 +7,19 @@ import WelcomeScreen from '../welcome-screeen/welcome-screen';
 import WinScreen from '../win-screen/win-screen';
 import GameScreen from '../game-screen/game-screen';
 import PrivateRoute from '../private-route/private-route';
+import LoadingScreen from '../loading-screen/loading-screen';
+import { useAppSelector } from '../../hooks';
+import { isCheckedAuth } from '../../game';
 
 function App(): JSX.Element {
+  const {authorizationStatus, isDataLoaded} = useAppSelector((state) => state);
+
+  if(isCheckedAuth(authorizationStatus) || !isDataLoaded) {
+    return (
+      <LoadingScreen />
+    );
+  }
+
   return (
     <BrowserRouter>
       <Routes>
@@ -24,7 +35,7 @@ function App(): JSX.Element {
           path={AppRoute.Result}
           element={
             <PrivateRoute
-              authorizationStatus={AuthorizationStatus.Auth}
+              authorizationStatus={authorizationStatus}
             >
               <WinScreen />
             </PrivateRoute>

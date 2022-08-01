@@ -12,14 +12,16 @@ type InitialState = {
   questions: Questions,
   authorizationStatus: AuthorizationStatus,
   error: string,
+  isDataLoaded: boolean,
 };
 
 const initialState: InitialState = {
   mistakes: 0,
   step: FIRST_GAME_STEP,
   questions: [],
-  authorizationStatus: AuthorizationStatus.Unknown,
+  authorizationStatus: AuthorizationStatus.Auth,
   error: '',
+  isDataLoaded: false,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -38,6 +40,7 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(loadQuestions, (state, action) => {
       state.questions = action.payload;
+      state.isDataLoaded = true;
     })
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;

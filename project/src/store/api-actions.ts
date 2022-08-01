@@ -21,7 +21,7 @@ export const fetchQuestionActions = createAsyncThunk(
   },
 );
 
-export const checkAuth = createAsyncThunk(
+export const checkAuthAction = createAsyncThunk(
   'user/checkAuth',
   async () => {
     try{
