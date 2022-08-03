@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useNavigate } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { resetGame } from '../../store/action';
+import { logoutAction } from '../../store/api-actions';
 
 function WinScreen():JSX.Element {
   const {step, mistakes} = useAppSelector((state) => state);
@@ -15,7 +16,16 @@ function WinScreen():JSX.Element {
   return (
     <section className="result">
       <div className="result-logout__wrapper">
-        <Link className="result-logout__link" to="#">Выход</Link>
+        <Link
+          className="result-logout__link"
+          onClick={(evt) => {
+            evt.preventDefault();
+            dispatch(logoutAction());
+          }}
+          to="#"
+        >
+          Выход
+        </Link>
       </div>
       <div className="result__logo">
         <img src="img/melody-logo.png" alt="Угадай мелодию" width="186" height="83" />
