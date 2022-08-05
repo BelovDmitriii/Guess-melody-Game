@@ -68,7 +68,7 @@ function AuthScreen(): JSX.Element {
         </button>
       </form>
       <button
-        onClick={() => navigate(AppRoute.Game)}
+        onClick={() => navigate(AppRoute.Root)}
         className="replay"
         type="button"
       >

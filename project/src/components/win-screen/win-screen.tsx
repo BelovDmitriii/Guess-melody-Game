@@ -37,7 +37,7 @@ function WinScreen():JSX.Element {
         type="button"
         onClick={() => {
           dispatch(resetGame());
-          navigate(AppRoute.Game);
+          navigate(AppRoute.Root);
         }}
       >
         Сыграть ещё раз
