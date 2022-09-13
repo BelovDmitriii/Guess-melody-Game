@@ -2,8 +2,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api } from '../store';
 import { store } from '../store';
 import { Questions } from '../types/question';
-import { loadQuestions, requireAuthorization, redirectToRoute } from './action';
-import { APIRoute, AuthorizationStatus, AppRoute } from '../const';
+import { loadQuestions, redirectToRoute } from './action';
+import { APIRoute, AppRoute } from '../const';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
 import { removeToken, saveToken } from '../services/token';
@@ -24,12 +24,7 @@ export const fetchQuestionActions = createAsyncThunk(
 export const checkAuthAction = createAsyncThunk(
   'user/checkAuth',
   async () => {
-    try{
-      await api.get(APIRoute.Login);
-      store.dispatch(requireAuthorization(AuthorizationStatus.Auth));
-    } catch(error) {
-      errorsHandle(error);
-    }
+    await api.get(APIRoute.Login);
   },
 );
 
@@ -39,11 +34,9 @@ export const loginAction = createAsyncThunk(
     try{
       const {data: {token}} = await api.post<UserData>(APIRoute.Login, {email, password});
       saveToken(token);
-      store.dispatch(requireAuthorization(AuthorizationStatus.Auth));
       store.dispatch(redirectToRoute(AppRoute.Result));
     } catch(error) {
       errorsHandle(error);
-      store.dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
     }
   },
 );
@@ -54,7 +47,6 @@ export const logoutAction = createAsyncThunk(
     try{
       await api.delete(APIRoute.Logout);
       removeToken();
-      store.dispatch(requireAuthorization(AuthorizationStatus.NoAuth));
     } catch(error) {
       errorsHandle(error);
     }
