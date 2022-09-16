@@ -31,7 +31,6 @@ function GenreQuestionList (props: GenreQuestionListProps){
             onChange={handleAnswersChange}
             renderPlayer={renderPlayer}
             userAnswer={userAnswers[id]}
-            777777
           />
         );
       })}
