@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api } from '../store';
 import { store } from '../store';
 import { Questions } from '../types/question';
-import { loadQuestions, redirectToRoute } from './action';
+import { redirectToRoute } from './action';
 import { APIRoute, AppRoute } from '../const';
 import { AuthData } from '../types/auth-data';
 import { UserData } from '../types/user-data';
@@ -14,7 +14,7 @@ export const fetchQuestionActions = createAsyncThunk(
   async () => {
     try {
       const {data} = await api.get<Questions>(APIRoute.Questions);
-      store.dispatch(loadQuestions(data));
+      return data;
     } catch(error) {
       errorsHandle(error);
     }
